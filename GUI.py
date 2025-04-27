@@ -1,8 +1,7 @@
 from tkinter import * #GUI
-from tkinter import ttk, font
+from tkinter import ttk
 from PIL import Image, ImageTk
 import pygame #sound handling
-
 
 root = Tk()
 root.title("21 Questions")
@@ -10,29 +9,13 @@ root.geometry("1200x700")
 
 my_pic = Image.open("90Retro.png")
 new_pic = my_pic.resize((1200,500), Image.Resampling.LANCZOS)
-bg = ImageTk.PhotoImage(new_pic)
+bg = ImageTk.PhotoImage(new_pic) #90RETRO
 
 ques = Image.open("21Questions.png")
 pic = ques.resize((500,400), Image.Resampling.LANCZOS)
-logo = ImageTk.PhotoImage(pic)
+logo = ImageTk.PhotoImage(pic) #21QUESTION
 
-bg2 = PhotoImage(file ="90Retro2.png")
 pygame.mixer.init() #sound initialization
-
-#print(font.families())
-
-"""
-style = ttk.Style(root)
-our_themes = ttk.Style().theme_names()
-
-my_menu = Menu(root)
-root.config(menu=my_menu)
-
-theme_menu=Menu(my_menu, tearoff=0)
-my_menu.add_cascade(label="Theme", menu=theme_menu)
-for t in our_themes:
-    theme_menu.add_command(label=t, command=lambda t=t:style.theme_use(t) )
-"""
 
 class GUI:
     def __init__(self, master):
@@ -113,16 +96,15 @@ class GUI:
                 self.nature += 1 #human
             case 7: #Reading
                 self.social -= 1
-                self.schedule -= 1
             case 8: #Poke Charmander
-                self.social += 1
+                self.social += 2
                 self.nature -= 1
             case 9: #group 1
                 self.social -= 2
                 self.ethic += 2
             case 10: #career firefighter/police
-                self.ethic += 4
-                self.nature += 2
+                self.ethic += 2
+                self.nature += 1
             case 11: #homemade
                 self.schedule -= 2
                 self.nature += 1
@@ -135,7 +117,7 @@ class GUI:
             case 14: #all ears
                 self.nature += 2
             case 15: #bart
-                self.nature -= 2
+                self.social += 2
                 self.ethic -= 1
             case 16: #Book
                 self.social -= 1
@@ -153,7 +135,6 @@ class GUI:
 
         self.btn1.config(bg="firebrick3")
         self.lock_all()
-
 
     def two_click(self):
         pygame.mixer.music.load("Button.mp3")
@@ -175,7 +156,7 @@ class GUI:
                 self.schedule -= 1
                 self.social += 2
             case 7: #Hobbies: Jamming to Music
-                self.schedule -= 2
+                self.schedule -= 1
             case 8: #Pokemon Pikachu
                 self.social += 1
                 self.schedule -= 1
@@ -183,8 +164,8 @@ class GUI:
                 self.social -= 1
                 self.ethic += 1
             case 10: #Career Doctor
-                self.schedule += 4
-                self.nature += 2
+                self.schedule += 2
+                self.nature += 1
             case 11: #cookbook
                 self.schedule += 1
                 self.nature += 1
@@ -216,9 +197,6 @@ class GUI:
         self.btn2.config(bg="goldenrod3")
         self.lock_all()
 
-
-
-
     def three_click(self):
         pygame.mixer.music.load("Button.mp3")
         pygame.mixer.music.play(loops=0)
@@ -229,7 +207,7 @@ class GUI:
             case 2: #pizza: combo
                 self.social += 2
             case 3:  # Friends: Joey
-                self.social += 1
+                self.social += 2
                 self.schedule -= 1
             case 4: # Strength: Not too Strong
                 self.ethic -= 1
@@ -247,8 +225,8 @@ class GUI:
                 self.social += 1
                 self.nature -= 1
             case 10: #Rockstar
-                self.schedule -= 4
-                self.nature += 2
+                self.schedule -= 2
+                self.nature += 1
             case 11: #buy food
                 self.nature -= 2
                 self.ethic -= 1
@@ -276,9 +254,9 @@ class GUI:
                 self.schedule += 1
             case 21: #memorized
                 self.schedule += 1
+
         self.btn3.config(bg="slate blue")
         self.lock_all()
-
 
     def four_click(self):
         pygame.mixer.music.load("Button.mp3")
@@ -290,10 +268,10 @@ class GUI:
             case 2: #pizza: veggie
                 self.social -= 2
             case 3:  # Friends: Rachel
-                self.schedule += 1
+                self.schedule += 2
                 self.social -= 1
             case 4: # Strength: Weak
-                self.ethic += -2
+                self.ethic -= 2
             case 5: #Social: I avoid sociability
                 self.social -= 2
             case 6: #Music: I don't like music
@@ -310,8 +288,8 @@ class GUI:
                 self.social += 2
                 self.nature -= 1
             case 10: #CEO
-                self.nature -= 4
-                self.social += 2
+                self.nature -= 2
+                self.social += 1
             case 11: #not go
                 self.ethic -= 2
                 self.social -= 1
@@ -334,7 +312,7 @@ class GUI:
             case 18: #mattress
                 self.ethic -= 1
             case 19: #ferris
-                self.ethic -=1
+                self.ethic -= 1
             case 20: #box
                 self.ethic -= 1
             case 21: #social security?
@@ -342,13 +320,6 @@ class GUI:
 
         self.btn4.config(bg="sea green")
         self.lock_all()
-
-    """
-    def prev_question(self):
-        self.question_display -= 1
-        if self.question_display == 0:
-            self.prevBtn.destroy()
-    """
 
     def next_question(self):
         self.question_display += 1
@@ -493,17 +464,24 @@ class GUI:
                 self.btn4.config(text="Social Security?")  # +1 lofty
             case 22: #Calculation
 
+                pygame.mixer.music.load("congrats.mp3")
+                pygame.mixer.music.play(loops=0)
+
                 values = [('schedule', abs(self.schedule)), ('social', abs(self.social)), ('ethic', abs(self.ethic)), ('nature', abs(self.nature))]
-                top_two = sorted(values, key =lambda x: x[1], reverse = True)
+                top_two = sorted(values, key =lambda x: x[1], reverse = True)[:2]
                 names = [item[0] for item in top_two]
 
                 trait_1 = self.names(names,0)
                 trait_2 = self.names(names,1)
-                print(trait_1, trait_2) #COMMENT OUT
+                #print(trait_1, trait_2) #COMMENT OUT
+
                 self.job_picker(trait_1, trait_2)
 
                 self.frame.destroy() #removes selection buttons
                 self.nextBtn.destroy()
+
+                self.lbl2 = Label(text=f"Your two most defining traits are {trait_1} and {trait_2}", font=("Comic Sans MS", 24), fg="yellow",bg="blue", width="1200")
+                self.lbl2.pack() #traits
 
 
     def names(self, names, i):
@@ -531,6 +509,7 @@ class GUI:
 
 
     def job_picker(self, trait1, trait2):
+        self.lbl.config(fg="yellow",bg="blue")
         match (trait1, trait2):
             #SCHEDULE/MIND
             case "science", "extrovert": #default
@@ -538,7 +517,7 @@ class GUI:
             case "science", "introvert":
                 self.lbl.config(text="Your job is a Programmer")
             case "science", "endurance":
-                self.lbl.config(text="Your job is a Land Surveyor")
+                self.lbl.config(text="Your job is a Land Surveyor") #better?
             case "science", "lofty":
                 self.lbl.config(text="Your job is a Lab Tech")
             case "science", "humanitarian":
@@ -567,7 +546,7 @@ class GUI:
             case "extrovert", "endurance":
                 self.lbl.config(text="Your job is a Police")
             case "extrovert", "lofty":
-                self.lbl.config(text="Your job is a Customer Service")
+                self.lbl.config(text="Your job is a Customer Service Agent")
             case "extrovert", "humanitarian":
                 self.lbl.config(text="Your job is a Social Work")
             case "extrovert", "business":
@@ -639,8 +618,6 @@ class GUI:
                 self.lbl.config(text="Your job is a Construction")
             case "business", "lofty":
                 self.lbl.config(text="Your job is a Manager")
-
-
 
     def lock_all(self):
         self.btn1["state"] = "disabled"
