@@ -359,13 +359,13 @@ class GUI:
                 self.btn1.config(text="Hella strong")          #+2 endurance
                 self.btn2.config(text="Average Joe")           #+1 endurance
                 self.btn3.config(text="I could use some work") #+1 lofty
-                self.btn4.config(text="Noodle arms")           #+2 lofty
+                self.btn4.config(text="As strong as a beanie baby")           #+2 lofty
             case 5: #SOCIAL
                 self.lbl.config(text="5. How Sociable are you?")
-                self.btn1.config(text="Very Talkative")      #+2 extrovert
+                self.btn1.config(text="Im a Party Animal")      #+2 extrovert
                 self.btn2.config(text="A consistent yapper") #+1 extrovert
                 self.btn3.config(text="A pretty quiet guy")  #+1 introvert
-                self.btn4.config(text="I do my own thing")   #+2 introvert
+                self.btn4.config(text="I'm a lone wolf")   #+2 introvert
             case 6: #Musician
                 self.lbl.config(text="6. Who's your favorite music act?")
                 self.btn1.config(text="Nirvana")
@@ -431,7 +431,7 @@ class GUI:
                 self.btn1.config(text="Book")  # +1 introverted +1 science
                 self.btn2.config(text="Walkman")  # +1 endurance +1 creative
                 self.btn3.config(text="Tamagotchi")  # +1 extroverted +1humanitarian
-                self.btn4.config(text="A comfy bed")  # +1 lofty +1business
+                self.btn4.config(text="A comfy beanbag chair")  # +1 lofty +1business
             case 17: #get out of bed
                 self.lbl.config(text="17. What gets you out of bed in the morning?")
                 self.btn1.config(text="I always have lots to do")  # +1 endurance
@@ -506,7 +506,6 @@ class GUI:
             else:
                 return "business"
         return None
-
 
     def job_picker(self, trait1, trait2):
         self.lbl.config(fg="yellow",bg="blue")
